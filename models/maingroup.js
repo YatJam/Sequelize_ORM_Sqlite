@@ -11,19 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ HigherGroup }) {
       // define association here
-      this.belongsTo(HigherGroup, {foreignKey: 'higherGroupId'})
+      this.belongsTo(HigherGroup, {foreignKey: 'higherGroupId', as: 'higherGroup'})
     }
     toJSON(){
       return { ...this.get(), id:undefined }
     }
   }
   MainGroup.init({
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Main Group must be specified'},
         notEmpty: { msg: 'Main Group name must not be empty'},
       }
-    }
+    },
   }, {
     sequelize,
     tableName: 'MainGroup',

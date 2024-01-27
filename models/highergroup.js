@@ -11,19 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ MainGroup }) {
       // define association here
-      this.hasMany(MainGroup, {foreignKey: 'higherGroupId'})
+      this.hasMany(MainGroup, {foreignKey: 'higherGroupId', as: 'mainGroup'})
     }
     toJSON(){
       return { ...this.get(), id:undefined }
     }
   }
   HigherGroup.init({
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,

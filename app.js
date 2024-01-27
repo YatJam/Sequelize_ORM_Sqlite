@@ -1,5 +1,5 @@
 const express = require('express')
-const { sequelize, HigherGroup } = require('./models')
+const { sequelize, HigherGroup, MainGroup } = require('./models')
 
 const app = express()
 app.use(express.json())
@@ -39,6 +39,21 @@ app.get('/highergroups/:id', async (req, res) => {
     } catch(err) {
         console.log(err)
         return res.status(500).json({ error: 'Something went wrong' })
+    }
+})
+
+app.post('/maingroup', async (req, res) => {
+    const { name, higherGroupId } = req.body
+
+    try {
+        const higherGroup = await HigherGroup.findOne({ where: { id: higherGroupId }})
+
+        const mainGroup = await MainGroup.create({ name, higherGroupId: higherGroup.id })
+
+        return res.json(mainGroup)
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({err})
     }
 })
 
