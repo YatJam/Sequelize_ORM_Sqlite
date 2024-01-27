@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize, DataTypes) {
-    await queryInterface.createTable('HigherGroups', {
+    await queryInterface.createTable('HigherGroup', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,6 +24,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('HigherGroups');
+    await queryInterface.dropTable('HigherGroup');
   }
 };

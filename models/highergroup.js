@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
+    freezeTableName: true,
     tableName: 'HigherGroup',
     modelName: 'HigherGroup',
   }
