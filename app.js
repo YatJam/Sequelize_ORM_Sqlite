@@ -57,6 +57,17 @@ app.post('/maingroup', async (req, res) => {
     }
 })
 
+app.get('/maingroups', async (req, res) => {
+    try {
+        const mainGroups = await MainGroup.findAll()
+
+        return res.json(mainGroups)
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({ error: 'Something went wrong' })
+    }
+})
+
 app.listen({ port: 5000 }, async () => {
     console.log('Server up on http://localhost:5000')
     await sequelize.authenticate()
